@@ -38,7 +38,29 @@ abstract class _SearchPageController with Store {
     String? idString = parser.parseId();
     String? tag = parser.parseTag();
     String? sort = parser.parseSort();
+    String? ext = parser.parseExt();
     String keywords = parser.parseKeywords();
+    if (ext!= null) {
+      final item = BangumiItem(
+            id: 0,
+            name: ext,
+            nameCn: ext,
+            type: 2,
+            images: {'large': 'https://bgm.tv/img/no_icon_subject.png'},
+            summary: '',
+            tags: [],
+            rank: 0,
+            airDate: '1997-01-01',
+            airWeekday: 0,
+            alias: [],
+            ratingScore: 0.0,
+            votes: 0,
+            votesCount: [],
+          );
+      bangumiList.add(item);
+      return;
+    }
+
     if (idString != null) {
       final id = int.tryParse(idString);
       if (id != null) {
