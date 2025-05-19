@@ -47,7 +47,7 @@ abstract class _SearchPageController with Store {
             nameCn: ext,
             type: 2,
             images: {'large': 'https://bgm.tv/img/no_icon_subject.png'},
-            summary: '',
+            summary: 'No Content Here',
             tags: [],
             rank: 0,
             airDate: '1997-01-01',
@@ -55,7 +55,7 @@ abstract class _SearchPageController with Store {
             alias: [],
             ratingScore: 0.0,
             votes: 0,
-            votesCount: [],
+            votesCount: [0],
           );
       bangumiList.add(item);
       return;
