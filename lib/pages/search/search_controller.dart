@@ -46,7 +46,7 @@ abstract class _SearchPageController with Store {
             name: ext,
             nameCn: ext,
             type: 2,
-            images: {'large': 'https://bgm.tv/img/no_icon_subject.png'},
+            images: {'large': ''},
             summary: 'No Content Here',
             tags: [],
             rank: 0,
