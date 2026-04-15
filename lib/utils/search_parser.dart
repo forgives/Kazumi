@@ -3,6 +3,7 @@ class SearchParser {
   final RegExp _idRegExp = RegExp(r'id:(\d+)', caseSensitive: false);
   final RegExp _tagRegExp = RegExp(r'tag:([\w\u4e00-\u9fa5\u30A0-\u30FF\.\-]+)', caseSensitive: false);
   final RegExp _sortRegExp = RegExp(r'sort:([\w\-]+)', caseSensitive: false);
+  final RegExp _speRegExp = RegExp(r'spe:([\w\u4e00-\u9fa5\u30A0-\u30FF\.\-]+)', caseSensitive: false);
 
   SearchParser(this.query);
 
@@ -25,7 +26,13 @@ class SearchParser {
     String cleaned = query.replaceAll(_idRegExp, '');
     cleaned = cleaned.replaceAll(_tagRegExp, '');
     cleaned = cleaned.replaceAll(_sortRegExp, '');
+    cleaned = cleaned.replaceAll(_speRegExp, '');
     return cleaned.trim();
+  }
+
+  String? parseSpe() {
+    final match = _speRegExp.firstMatch(query);
+    return match != null ? match.group(1) : null;
   }
 
   bool hasSortSyntax() {

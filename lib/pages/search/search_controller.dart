@@ -76,6 +76,30 @@ abstract class _SearchPageController with Store {
     String? idString = parser.parseId();
     String? tag = parser.parseTag();
     String? sort = parser.parseSort();
+    String? spe = parser.parseSpe();
+    if (spe!= null) {
+      final item = BangumiItem(
+        id: 0,
+        name: spe,
+        nameCn: spe,
+        type: 2,
+        images: {'large': ''},
+        summary: 'No Content Here',
+        tags: [],
+        rank: 0,
+        airDate: '1997-01-01',
+        airWeekday: 0,
+        alias: [],
+        ratingScore: 0.0,
+        votes: 0,
+        votesCount: [0],
+        info: ''
+      );
+      bangumiList.add(item);
+      return;
+    }
+
+
     String keywords = parser.parseKeywords();
     if (idString != null) {
       final id = int.tryParse(idString);
