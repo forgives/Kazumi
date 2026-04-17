@@ -192,32 +192,6 @@ class _SmallestPlayerItemPanelState extends State<SmallestPlayerItemPanel> {
     return cachedDanmakuOnIcon!;
   }
 
-  Widget _buildDanmakuToggleButton(BuildContext context) {
-    return IconButton(
-      color: Colors.white,
-      icon: playerController.danmakuLoading
-          ? SizedBox(
-              width: _danmakuIconSize,
-              height: _danmakuIconSize,
-              child: CircularProgressIndicator(
-                strokeWidth: _loadingIndicatorStrokeWidth,
-              ),
-            )
-          : (playerController.danmakuOn
-              ? danmakuOnIcon(context)
-              : cachedDanmakuOffIcon!),
-      onPressed: playerController.danmakuLoading
-          ? null
-          : () {
-              widget.handleDanmaku();
-            },
-      tooltip: playerController.danmakuLoading
-          ? '弹幕加载中...'
-          : (playerController.danmakuOn
-              ? '关闭弹幕'
-              : '打开弹幕'),
-    );
-  }
 
   Widget forwardIcon() {
     return Tooltip(
@@ -592,8 +566,6 @@ class _SmallestPlayerItemPanelState extends State<SmallestPlayerItemPanel> {
                   tooltip: '画中画',
                   icon: const Icon(Icons.picture_in_picture,
                       color: Colors.white)),
-            // 弹幕开关
-            _buildDanmakuToggleButton(context),
             // 追番
             CollectButton(
               bangumiItem: videoPageController.bangumiItem,
@@ -740,122 +712,6 @@ class _SmallestPlayerItemPanelState extends State<SmallestPlayerItemPanel> {
                     child: Align(
                       alignment: Alignment.centerLeft,
                       child: Text("超分辨率"),
-                    ),
-                  ),
-                ),
-                SubmenuButton(
-                  menuChildren: [
-                    MenuItemButton(
-                      child: Container(
-                        height: 48,
-                        constraints: BoxConstraints(minWidth: 112),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                              "当前房间: ${playerController.syncplayRoom == '' ? '未加入' : playerController.syncplayRoom}"),
-                        ),
-                      ),
-                    ),
-                    MenuItemButton(
-                      child: Container(
-                        height: 48,
-                        constraints: BoxConstraints(minWidth: 112),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                              "网络延时: ${playerController.syncplayClientRtt}ms"),
-                        ),
-                      ),
-                    ),
-                    MenuItemButton(
-                      onPressed: () {
-                        widget.showSyncPlayRoomCreateDialog();
-                      },
-                      child: Container(
-                        height: 48,
-                        constraints: BoxConstraints(minWidth: 112),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("加入房间"),
-                        ),
-                      ),
-                    ),
-                    MenuItemButton(
-                      onPressed: () {
-                        widget.showSyncPlayEndPointSwitchDialog();
-                      },
-                      child: Container(
-                        height: 48,
-                        constraints: BoxConstraints(minWidth: 112),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("切换服务器"),
-                        ),
-                      ),
-                    ),
-                    MenuItemButton(
-                      onPressed: () async {
-                        await playerController.exitSyncPlayRoom();
-                      },
-                      child: Container(
-                        height: 48,
-                        constraints: BoxConstraints(minWidth: 112),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text("断开连接"),
-                        ),
-                      ),
-                    ),
-                  ],
-                  child: Container(
-                    height: 48,
-                    constraints: BoxConstraints(minWidth: 112),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("一起看"),
-                    ),
-                  ),
-                ),
-                MenuItemButton(
-                  onPressed: () {
-                    widget.showDanmakuSwitch();
-                  },
-                  child: Container(
-                    height: 48,
-                    constraints: BoxConstraints(minWidth: 112),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("弹幕切换"),
-                    ),
-                  ),
-                ),
-                MenuItemButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      isScrollControlled: true,
-                      constraints: BoxConstraints(
-                          maxHeight: MediaQuery.of(context).size.height * 3 / 4,
-                          maxWidth: (Utils.isDesktop() || Utils.isTablet())
-                              ? MediaQuery.of(context).size.width * 9 / 16
-                              : MediaQuery.of(context).size.width),
-                      clipBehavior: Clip.antiAlias,
-                      context: context,
-                      builder: (context) {
-                        return DanmakuSettingsSheet(
-                          danmakuController:
-                              playerController.danmakuController,
-                          onUpdateDanmakuSpeed:
-                              playerController.updateDanmakuSpeed,
-                        );
-                      },
-                    );
-                  },
-                  child: Container(
-                    height: 48,
-                    constraints: BoxConstraints(minWidth: 112),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text("弹幕设置"),
                     ),
                   ),
                 ),

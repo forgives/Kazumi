@@ -980,7 +980,8 @@ class _VideoPageState extends State<VideoPage>
                                             .colorScheme
                                             .onSurface),
                               )),
-                              _buildDownloadStatusIcon(count0, urlItem),
+                              // 下载图标去除
+                              // _buildDownloadStatusIcon(count0, urlItem),
                               const SizedBox(width: 2),
                             ],
                           ),
@@ -1132,22 +1133,23 @@ class _VideoPageState extends State<VideoPage>
                           ],
                         ),
                       ),
-                      if (!videoPageController.isOfflineMode)
-                        Positioned(
-                          right: 16,
-                          bottom: 16,
-                          child: FloatingActionButton(
-                            child: const Icon(Icons.download_rounded),
-                            onPressed: () {
-                              showModalBottomSheet(
-                                context: context,
-                                isScrollControlled: true,
-                                builder: (context) =>
-                                    DownloadEpisodeSheet(road: currentRoad),
-                              );
-                            },
-                          ),
-                        ),
+                      // 取消下载按钮
+                      // if (!videoPageController.isOfflineMode)
+                      //   Positioned(
+                      //     right: 16,
+                      //     bottom: 16,
+                      //     child: FloatingActionButton(
+                      //       child: const Icon(Icons.download_rounded),
+                      //       onPressed: () {
+                      //         showModalBottomSheet(
+                      //           context: context,
+                      //           isScrollControlled: true,
+                      //           builder: (context) =>
+                      //               DownloadEpisodeSheet(road: currentRoad),
+                      //         );
+                      //       },
+                      //     ),
+                      //   ),
                     ],
                   ),
                   EpisodeInfo(

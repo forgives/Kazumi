@@ -344,33 +344,6 @@ class _PlayerItemPanelState extends State<PlayerItemPanel> {
     return cachedDanmakuOnIcon!;
   }
 
-  Widget _buildDanmakuToggleButton(BuildContext context) {
-    return IconButton(
-      color: Colors.white,
-      icon: playerController.danmakuLoading
-          ? SizedBox(
-              width: _danmakuIconSize,
-              height: _danmakuIconSize,
-              child: CircularProgressIndicator(
-                strokeWidth: _loadingIndicatorStrokeWidth,
-              ),
-            )
-          : (playerController.danmakuOn
-              ? danmakuOnIcon(context)
-              : cachedDanmakuOffIcon!),
-      onPressed: playerController.danmakuLoading
-          ? null
-          : () {
-              widget.handleDanmaku();
-            },
-      tooltip: playerController.danmakuLoading
-          ? '弹幕加载中...'
-          : (playerController.danmakuOn
-              ? '关闭弹幕'
-              : '打开弹幕'),
-    );
-  }
-
   Widget forwardIcon() {
     return Tooltip(
       message: '快进${playerController.buttonSkipTime}秒，长按修改时间',
@@ -765,7 +738,6 @@ class _PlayerItemPanelState extends State<PlayerItemPanel> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    _buildDanmakuToggleButton(context),
                                     IconButton(
                                       onPressed: () {
                                         widget.keyboardFocus.requestFocus();
@@ -1188,19 +1160,6 @@ class _PlayerItemPanelState extends State<PlayerItemPanel> {
                       );
                     },
                     menuChildren: [
-                      MenuItemButton(
-                        onPressed: () {
-                          widget.showDanmakuSwitch();
-                        },
-                        child: Container(
-                          height: 48,
-                          constraints: BoxConstraints(minWidth: 112),
-                          child: Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text("弹幕切换"),
-                          ),
-                        ),
-                      ),
                       MenuItemButton(
                         onPressed: () {
                           widget.showVideoInfo();

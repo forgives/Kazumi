@@ -49,7 +49,7 @@ class _MyPageState extends State<MyPage> {
           maxWidth: 1000,
           sections: [
             SettingsSection(
-              title: Text('播放历史与视频源', style: TextStyle(fontFamily: fontFamily)),
+              title: Text('播放管理', style: TextStyle(fontFamily: fontFamily)),
               tiles: [
                 SettingsTile.navigation(
                   onPressed: (_) {
@@ -60,24 +60,24 @@ class _MyPageState extends State<MyPage> {
                   description: Text('查看播放历史记录',
                       style: TextStyle(fontFamily: fontFamily)),
                 ),
-                SettingsTile.navigation(
-                  onPressed: (_) {
-                    Modular.to.pushNamed('/settings/download/');
-                  },
-                  leading: const Icon(Icons.download_rounded),
-                  title: Text('下载管理', style: TextStyle(fontFamily: fontFamily)),
-                  description: Text('查看和管理离线下载',
-                      style: TextStyle(fontFamily: fontFamily)),
-                ),
-                SettingsTile.navigation(
-                  onPressed: (_) {
-                    Modular.to.pushNamed('/settings/download-settings');
-                  },
-                  leading: const Icon(Icons.settings_rounded),
-                  title: Text('下载设置', style: TextStyle(fontFamily: fontFamily)),
-                  description: Text('配置下载并发数等参数',
-                      style: TextStyle(fontFamily: fontFamily)),
-                ),
+                // SettingsTile.navigation(
+                //   onPressed: (_) {
+                //     Modular.to.pushNamed('/settings/download/');
+                //   },
+                //   leading: const Icon(Icons.download_rounded),
+                //   title: Text('下载管理', style: TextStyle(fontFamily: fontFamily)),
+                //   description: Text('查看和管理离线下载',
+                //       style: TextStyle(fontFamily: fontFamily)),
+                // ),
+                // SettingsTile.navigation(
+                //   onPressed: (_) {
+                //     Modular.to.pushNamed('/settings/download-settings');
+                //   },
+                //   leading: const Icon(Icons.settings_rounded),
+                //   title: Text('下载设置', style: TextStyle(fontFamily: fontFamily)),
+                //   description: Text('配置下载并发数等参数',
+                //       style: TextStyle(fontFamily: fontFamily)),
+                // ),
                 SettingsTile.navigation(
                   onPressed: (_) {
                     Modular.to.pushNamed('/settings/plugin/');
@@ -87,11 +87,11 @@ class _MyPageState extends State<MyPage> {
                   description: Text('管理番剧资源规则',
                       style: TextStyle(fontFamily: fontFamily)),
                 ),
-              ],
-            ),
-            SettingsSection(
-              title: Text('播放器设置', style: TextStyle(fontFamily: fontFamily)),
-              tiles: [
+            //   ],
+            // ),
+            // SettingsSection(
+            //   title: Text('播放器设置', style: TextStyle(fontFamily: fontFamily)),
+            //   tiles: [
                 SettingsTile.navigation(
                   onPressed: (_) {
                     Modular.to.pushNamed('/settings/player');
@@ -101,24 +101,24 @@ class _MyPageState extends State<MyPage> {
                   description: Text('设置播放器相关参数',
                       style: TextStyle(fontFamily: fontFamily)),
                 ),
-                SettingsTile.navigation(
-                  onPressed: (_) {
-                    Modular.to.pushNamed('/settings/danmaku/');
-                  },
-                  leading: const Icon(Icons.subtitles_rounded),
-                  title: Text('弹幕设置', style: TextStyle(fontFamily: fontFamily)),
-                  description: Text('设置弹幕相关参数',
-                      style: TextStyle(fontFamily: fontFamily)),
-                ),
-                SettingsTile.navigation(
-                  onPressed: (_) {
-                    Modular.to.pushNamed('/settings/keyboard');
-                  },
-                  leading: const Icon(Icons.keyboard_rounded),
-                  title: Text('操作设置', style: TextStyle(fontFamily: fontFamily)),
-                  description: Text('设置播放器按键映射',
-                      style: TextStyle(fontFamily: fontFamily)),
-                ),
+                // SettingsTile.navigation(
+                //   onPressed: (_) {
+                //     Modular.to.pushNamed('/settings/danmaku/');
+                //   },
+                //   leading: const Icon(Icons.subtitles_rounded),
+                //   title: Text('弹幕设置', style: TextStyle(fontFamily: fontFamily)),
+                //   description: Text('设置弹幕相关参数',
+                //       style: TextStyle(fontFamily: fontFamily)),
+                // ),
+                // SettingsTile.navigation(
+                //   onPressed: (_) {
+                //     Modular.to.pushNamed('/settings/keyboard');
+                //   },
+                //   leading: const Icon(Icons.keyboard_rounded),
+                //   title: Text('操作设置', style: TextStyle(fontFamily: fontFamily)),
+                //   description: Text('设置播放器按键映射',
+                //       style: TextStyle(fontFamily: fontFamily)),
+                // ),
                 SettingsTile.navigation(
                   onPressed: (_) {
                     Modular.to.pushNamed('/settings/proxy');

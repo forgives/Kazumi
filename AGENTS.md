@@ -29,6 +29,196 @@ Pages (UI) → Controllers (MobX) → Repositories → Request/API
 | `lib/shaders/` | Anime4K GLSL shader controllers for real-time video upscaling |
 | `assets/plugins/` | Built-in JSON rule files (AGE, DM84, aafun) |
 
+## Project Structure Details
+
+### Dependencies (pubspec.yaml)
+
+**Core Framework:**
+- `flutter_modular`: ^6.3.4 - Routing and dependency injection
+- `mobx`: ^2.6.0 + `flutter_mobx`: ^2.3.0 - State management
+- `dio`: ^5.0.0 - HTTP client
+- `hive_ce`: ^2.16.0 + `hive_ce_flutter`: ^2.3.3 - Local storage
+
+**Video & Audio:**
+- `media_kit` (forked) - Core video player
+- `canvas_danmaku`: ^0.3.1 - Danmaku rendering
+- `audio_service`: ^0.18.15 - Background audio playback
+- `flutter_volume_controller`: ^1.3.2 - Volume control
+
+**WebView & Network:**
+- `flutter_inappwebview_*`: Platform-specific WebView (Android/iOS/macOS)
+- `webview_windows` (git) - Windows WebView
+- `desktop_webview_window` (git) - Linux WebView
+- `xpath_selector`: ^3.0.2 - XPath parsing for plugin system
+- `webdav_client`: ^1.2.2 - WebDAV sync
+
+**UI Components:**
+- `dynamic_color`: ^1.8.1 - Material You dynamic colors
+- `cached_network_image`: ^3.4.1 - Image caching
+- `flutter_svg`: ^2.2.3 - SVG support
+- `fl_chart`: ^1.1.1 - Charts
+- `skeletonizer`: ^2.1.2 - Loading skeletons
+
+**Utilities:**
+- `window_manager`: ^0.5.1 - Desktop window management
+- `tray_manager`: ^0.5.0 - System tray
+- `antlr4`: ^4.13.2 - BBCode parser
+- `cookie_jar`: ^4.0.9 - Cookie management
+- `path_provider`: ^2.1.5 - File system access
+
+### Page Modules (lib/pages/)
+
+| Module | Files | Description |
+|--------|-------|-------------|
+| `popular/` | 4 files | Popular anime page - trending content display |
+| `timeline/` | 4 files | Timeline page - seasonal anime schedule |
+| `collect/` | 4 files | Collection page - user's anime collections |
+| `my/` | 4 files | My page - user profile and settings entry |
+| `search/` | 4 files | Search page - anime search functionality |
+| `video/` | 4 files | Video page - video source selection |
+| `info/` | 7 files | Info page - anime detail information |
+| `player/` | 7 files | Player page - video playback with danmaku |
+| `settings/` | 12 items | Settings page - app configuration sub-modules |
+| `download/` | 5 files | Download page - offline download management |
+| `history/` | 4 files | History page - watch history |
+| `plugin_editor/` | 5 files | Plugin editor - custom rule creation |
+| `webdav_editor/` | 3 files | WebDAV editor - sync configuration |
+| `about/` | 2 files | About page - app information |
+| `error/` | 1 file | Error page - error display |
+| `logs/` | 1 file | Logs page - application logs |
+| `menu/` | 1 file | Menu page - navigation menu |
+
+**Settings Sub-modules:**
+- `danmaku/` - Danmaku settings (5 files)
+- `proxy/` - Proxy settings (3 files)
+- `player_settings.dart` - Player configuration
+- `theme_settings_page.dart` - Theme and appearance
+- `interface_settings.dart` - Interface options
+- `download_settings.dart` - Download configuration
+- `keyboard_settings.dart` - Keyboard shortcuts
+- `decoder_settings.dart` - Video decoder settings
+- `renderer_settings.dart` - Renderer settings
+- `displaymode_settings.dart` - Display mode settings
+- `super_resolution_settings.dart` - Anime4K upscaling settings
+
+### Data Models (lib/modules/)
+
+| Module | Files | Description |
+|--------|-------|-------------|
+| `bangumi/` | 6 files | Bangumi anime data models |
+| `collect/` | 5 files | Collection data models (CollectedBangumi, etc.) |
+| `history/` | 2 files | Watch history models |
+| `danmaku/` | 3 files | Danmaku data models |
+| `download/` | 2 files | Download record models |
+| `search/` | 3 files | Search history models |
+| `comments/` | 2 files | Comment data models |
+| `character/` | 1 file | Character data models |
+| `characters/` | 3 files | Characters list models |
+| `staff/` | 2 files | Staff information models |
+| `roads/` | 1 file | Episode/chapter road models |
+| `plugin/` | 1 file | Plugin data models |
+
+### UI Components (lib/bean/)
+
+| Category | Files | Description |
+|----------|-------|-------------|
+| `card/` | 11 files | Card widgets (anime cards, episode cards, etc.) |
+| `appbar/` | 3 files | Custom app bar components |
+| `dialog/` | 1 file | Dialog widgets |
+| `settings/` | 2 files | Settings UI components |
+| `widget/` | 5 files | General utility widgets |
+
+### Plugin System (lib/plugins/)
+
+| File | Description |
+|------|-------------|
+| `plugins.dart` | Core plugin engine - XPath rule execution |
+| `plugins_controller.dart` | Plugin state management (MobX) |
+| `plugin_cookie_manager.dart` | Cookie management for plugins |
+| `anti_crawler_config.dart` | Anti-crawler configuration |
+| `plugin_validity_tracker.dart` | Plugin validity tracking |
+| `plugin_install_time_tracker.dart` | Plugin installation tracking |
+
+### Providers (lib/providers/)
+
+| Module | Files | Description |
+|--------|-------|-------------|
+| `video/` | 3 files | Video source resolution providers |
+| `captcha/` | 1 file | Captcha handling providers |
+
+### Repositories (lib/repositories/)
+
+| File | Description |
+|------|-------------|
+| `collect_repository.dart` | Collection data access |
+| `collect_crud_repository.dart` | Collection CRUD operations |
+| `history_repository.dart` | History data access |
+| `download_repository.dart` | Download data access |
+| `search_history_repository.dart` | Search history data access |
+
+### Network Layer (lib/request/)
+
+| File | Description |
+|------|-------------|
+| `request.dart` | Dio HTTP client configuration |
+| `bangumi.dart` | Bangumi API client |
+| `damaku.dart` | DanDanPlay API client |
+| `api.dart` | API endpoints configuration |
+| `interceptor.dart` | HTTP interceptors |
+| `query_manager.dart` | Query management |
+| `plugin.dart` | Plugin network requests |
+
+### Utilities (lib/utils/)
+
+| File | Description |
+|------|-------------|
+| `storage.dart` | Local storage utilities |
+| `download_manager.dart` | Download management |
+| `m3u8_parser.dart` | M3U8 playlist parser |
+| `m3u8_ad_filter.dart` | M3U8 ad filtering |
+| `webdav.dart` | WebDAV synchronization |
+| `syncplay.dart` | SyncPlay protocol implementation |
+| `auto_updater.dart` | Auto-update functionality |
+| `audio_controller.dart` | Audio playback control |
+| `background_download_service.dart` | Background download service |
+| `timed_shutdown_service.dart` | Scheduled shutdown |
+| `pip_utils.dart` | Picture-in-picture utilities |
+| `proxy_utils.dart` / `proxy_manager.dart` | Proxy configuration |
+| `anime_season.dart` | Anime season utilities |
+| `search_parser.dart` | Search result parsing |
+| `string_match.dart` | String matching utilities |
+| `format_utils.dart` | Format utilities |
+| `external_player.dart` | External player integration |
+| `remote.dart` | Remote control functionality |
+| `windows_shortcut.dart` | Windows keyboard shortcuts |
+| `utils.dart` | General utilities |
+| `constants.dart` | App constants |
+| `logger.dart` | Logging utilities |
+| `extension.dart` | Dart extensions |
+| `mortis.dart` | Mortis utilities |
+
+### WebView (lib/webview/)
+
+| Module | Files | Description |
+|--------|-------|-------------|
+| `video/` | 2 files | Video parsing WebView implementations |
+| `captcha/` | 2 files | Captcha handling WebView |
+
+### BBCode Parser (lib/bbcode/)
+
+| File | Description |
+|------|-------------|
+| `bbcode_base_listener.dart` | Base BBCode listener |
+| `bbcode_elements.dart` | BBCode element definitions |
+| `bbcode_widget.dart` | BBCode rendering widget |
+| `generated/` | 4 files | ANTLR4 generated parser files |
+
+### Shaders (lib/shaders/)
+
+| File | Description |
+|------|-------------|
+| `shaders_controller.dart` | Anime4K shader controller (MobX) |
+
 ## Build & Commands
 
 ```bash

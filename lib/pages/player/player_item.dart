@@ -431,27 +431,12 @@ class _PlayerItemState extends State<PlayerItem>
 
   void handleDanmaku() {
     playerController.danmakuController.clear();
-    // if true, turn off danmaku.
-    if (playerController.danmakuOn) {
-      setState(() {
-        playerController.danmakuOn = false;
-      });
-      setting.put(SettingBoxKey.danmakuEnabledByDefault, false);
-      unawaited(_updateAndroidPIPActions(force: true));
-      return;
-    }
-    // if false and empty, show dialog.
-    if (playerController.danDanmakus.isEmpty) {
-      showDanmakuSwitch();
-      unawaited(_updateAndroidPIPActions(force: true));
-      return;
-    }
-    // turn on danmaku.
     setState(() {
-      playerController.danmakuOn = true;
+      playerController.danmakuOn = false;
     });
-    setting.put(SettingBoxKey.danmakuEnabledByDefault, true);
+    setting.put(SettingBoxKey.danmakuEnabledByDefault, false);
     unawaited(_updateAndroidPIPActions(force: true));
+    return;
   }
 
   Future<void> _uploadHistoryToWebDav() async {
