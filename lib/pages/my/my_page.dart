@@ -160,11 +160,11 @@ class _MyPageState extends State<MyPage> {
                   description:
                       Text('设置同步参数', style: TextStyle(fontFamily: fontFamily)),
                 ),
-              ],
-            ),
-            SettingsSection(
-              title: Text('其他', style: TextStyle(fontFamily: fontFamily)),
-              tiles: [
+            //   ],
+            // ),
+            // SettingsSection(
+            //   title: Text('其他', style: TextStyle(fontFamily: fontFamily)),
+            //   tiles: [
                 SettingsTile.navigation(
                   onPressed: (_) {
                     Modular.to.pushNamed('/settings/about/');
